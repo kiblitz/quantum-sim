@@ -2,6 +2,8 @@
 from __future__ import annotations
 from typing import AnyStr, Dict, Tuple
 
+import math
+
 # Complex number
 class cnum:
   def __init__(self, real : float, imag : float = 0):
@@ -39,6 +41,12 @@ def cadd(c1 : cnum, c2 : cnum) -> cnum:
   c = c2.real
   d = c2.imag
   return cnum(a + c, b + d)
+
+# Complex Exponential (e^ci)
+def cexp(c : float, precision : int = 8):
+  real = round(math.cos(c), precision)
+  imag = round(math.sin(c), precision)
+  return cnum(real, imag)
 
 # Complex Matrix
 class cmat:
