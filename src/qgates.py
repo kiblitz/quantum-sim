@@ -69,9 +69,8 @@ def T(cm : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-# Controlled Not X
-def CX(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm = kronecker(cm1, cm2)
+# Controlled Not X (2 qubits)
+def CX(cm : cmat) -> cmat:
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -81,9 +80,8 @@ def CX(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-# Controlled Not Y
-def CY(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm = kronecker(cm1, cm2)
+# Controlled Not Y (2 qubits)
+def CY(cm : cmat) -> cmat:
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -93,9 +91,8 @@ def CY(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-# Controlled Not Z
-def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm = kronecker(cm1, cm2)
+# Controlled Not Z (2 qubits)
+def CZ(cml : cmat) -> cmat:
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -106,8 +103,7 @@ def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
   return cmatmult(m, cm)
 
 # Swap
-def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm = kronecker(cm1, cm2)
+def SWAP(cm : cmat) -> cmat:
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -117,9 +113,8 @@ def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-# Toffoli (CCNOT)
-def CCNOT(cm1 : cmat, cm2 : cmat, cm3 : cmat) -> cmat:
-  cm = kronecker(kronecker(cm1, cm2), cm3)
+# Toffoli (CCNOT) (3 qubits)
+def CCNOT(cm : cmat) -> cmat:
   rows = 8
   cols = 8
   entries = {(0, 0):cnum(1),
