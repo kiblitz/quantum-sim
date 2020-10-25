@@ -10,6 +10,10 @@ class cnum:
     self.real = real
     self.imag = imag
   
+  # Modulus (Euclidean norm)
+  def mod(self) -> float:
+    return (self.real**2 + self.imag**2)**0.5
+  
   # String representation
   def to_string(self, rem0 : bool = True, condensed : bool = False) -> AnyStr:
     real = str(self.real)
