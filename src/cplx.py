@@ -132,6 +132,15 @@ class cmat:
         entries[(r, c)] = total
     return cmat(rows, cols, entries)
 
+  # Complex Matrix Exponentiation
+  def __pow__(self, exp : int) -> cmat:
+    if exp < 0:
+      raise Exception("Matrix exponent cannot be negative")
+    ans = self
+    for i in range(1, exp):
+      ans @= self
+    return ans
+
   # Scalar times Complex Matrix
   def __lshift__(self, scalar : cnum) -> cmat:
     rows = self.rows
