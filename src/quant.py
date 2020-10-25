@@ -61,4 +61,27 @@ def CX(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm3)
 
+#Controlled Not Y
+def CY(cm1 : cmat, cm2 : cmat) -> cmat:
+  cm3 = kronecker(cm1, cm2)
+  rows = 4
+  cols = 4
+  entries = {(0, 0):cnum(1),
+             (1, 1):cnum(1),
+             (2, 3):cnum(0, -1),
+             (3, 2):cnum(0, 1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm3)
+
+#Controlled Not Z
+def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
+  cm3 = kronecker(cm1, cm2)
+  rows = 4
+  cols = 4
+  entries = {(0, 0):cnum(1),
+             (1, 1):cnum(1),
+             (2, 2):cnum(1),
+             (3, 3):cnum(-1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm3)
 
