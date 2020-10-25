@@ -43,6 +43,11 @@ class cmat:
       col = key[1]
       self.array[row][col] = value
 
+  def smult(self, scalar : cnum) -> None:
+    for r in range(len(self.array)):
+      for c in range(len(self.array[r])):
+        self.array[r][c] = cmult(scalar, self.array[r][c])
+
   def display(self) -> None:
     sizes = []
     for col in [*zip(*self.array)]:
