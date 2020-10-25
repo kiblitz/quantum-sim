@@ -78,3 +78,22 @@ def cmatmult(cm1 : cmat, cm2 : cmat) -> cmat:
       entries[(r, c)] = total
   return cmat(rows, cols, entries)
 
+def kronecker(cm1 : cmat, cm2 : cmat) -> cmat:
+  row1 = cm1.rows
+  col1 = cm1.cols
+  row2 = cm2.rows
+  col2 = cm2.cols
+  rows = row1 * row2
+  cols = col1 * col2
+  entries = {}
+  for r in range(rows):
+    for c in range(cols):
+      key = (r, c)
+      r1 = r // row2
+      c1 = c // col2
+      r2 = r % row2
+      c2 = c % col2
+      e1 = cm1.array[r1][c1]
+      e2 = cm2.array[r2][c2] 
+      entries[key] = cmult(e1, e2)
+  return cmat(rows, cols, entries)
