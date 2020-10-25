@@ -4,6 +4,9 @@ from typing import AnyStr, Dict, Tuple
 
 import math
 
+# Decimal precision
+PRECISION = 8
+
 # Complex number
 class cnum:
   def __init__(self, real : float, imag : float = 0):
@@ -12,7 +15,7 @@ class cnum:
   
   # Modulus (Euclidean norm)
   def __abs__(self) -> float:
-    return (self.real**2 + self.imag**2)**0.5
+    return round((self.real**2 + self.imag**2)**0.5, PRECISION)
 
   # Complex Conjugate
   def __invert__(self):
@@ -24,7 +27,8 @@ class cnum:
     i1 = self.imag
     r2 = c.real
     i2 = c.imag
-    return cnum(r1 * r2 - i1 * i2, i1 * r2 + r1 * i2)
+    return cnum(round(r1 * r2 - i1 * i2, PRECISION), 
+                round(i1 * r2 + r1 * i2, PRECISION))
  
   # Complex Addition
   def __add__(self, c : cnum) -> cnum:
@@ -75,9 +79,9 @@ class cnum:
     print(self.to_string(rem0, condensed))
 
 # Complex Exponential (e^ci)
-def cexp(c : float, precision : int = 8):
-  real = round(math.cos(c), precision)
-  imag = round(math.sin(c), precision)
+def cexp(c : float):
+  real = round(math.cos(c), PRECISION)
+  imag = round(math.sin(c), PRECISION)
   return cnum(real, imag)
 
 # Complex Matrix
