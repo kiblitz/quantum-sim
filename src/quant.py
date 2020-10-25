@@ -2,6 +2,8 @@
 from cplx import *
 from typing import Tuple
 
+import math
+
 # Zero qubit
 def zero() -> cmat:
   rows = 2
@@ -60,6 +62,24 @@ def Z(cm : cmat) -> cmat:
   cols = 2
   entries = {(0, 0):cnum(1),
              (1, 1):cnum(-1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm)
+
+# Phase (S)
+def S(cm : cmat) -> cmat:
+  rows = 2
+  cols = 2
+  entries = {(0, 0):cnum(1),
+             (1, 1):cnum(0, 1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm)
+
+# pi/8 (T)
+def T(cm : cmat) -> cmat:
+  rows = 2
+  cols = 2
+  entries = {(0, 0):cnum(1),
+             (1, 1):cexp(math.pi/4)}
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
