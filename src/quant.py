@@ -2,21 +2,21 @@
 from cplx import *
 from typing import Tuple
 
-#Zero qubit
+# Zero qubit
 def zero() -> cmat:
   rows = 2
   cols = 1
   entries = {(0, 0):cnum(1)}
   return cmat(rows, cols, entries)
 
-#One qubit
+# One qubit
 def one() -> cmat:
   rows = 2
   cols = 1
   entries = {(1, 0):cnum(1)}
   return cmat(rows, cols, entries)
 
-#Identity
+# Identity
 def I() -> cmat:
   rows = 2
   cols = 2
@@ -24,7 +24,7 @@ def I() -> cmat:
              (1, 1):cnum(1)}
   return cmat(rows, cols, entries)
 
-#Hadamard
+# Hadamard
 def H(cm : cmat) -> cmat:
   rows = 2
   cols = 2
@@ -36,7 +36,7 @@ def H(cm : cmat) -> cmat:
   m = cmat(rows, cols, entries).smult(scalar)
   return cmatmult(m, cm)
 
-#Pauli-X
+# Pauli-X
 def X(cm : cmat) -> cmat:
   rows = 2
   cols = 2
@@ -45,7 +45,7 @@ def X(cm : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Pauli-Y
+# Pauli-Y
 def Y(cm : cmat) -> cmat:
   rows = 2
   cols = 2
@@ -54,7 +54,7 @@ def Y(cm : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Pauli-Z
+# Pauli-Z
 def Z(cm : cmat) -> cmat:
   rows = 2
   cols = 2
@@ -63,7 +63,7 @@ def Z(cm : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Controlled Not X
+# Controlled Not X
 def CX(cm1 : cmat, cm2 : cmat) -> cmat:
   cm = kronecker(cm1, cm2)
   rows = 4
@@ -75,7 +75,7 @@ def CX(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Controlled Not Y
+# Controlled Not Y
 def CY(cm1 : cmat, cm2 : cmat) -> cmat:
   cm = kronecker(cm1, cm2)
   rows = 4
@@ -87,7 +87,7 @@ def CY(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Controlled Not Z
+# Controlled Not Z
 def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
   cm = kronecker(cm1, cm2)
   rows = 4
@@ -99,7 +99,7 @@ def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Swap
+# Swap
 def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
   cm = kronecker(cm1, cm2)
   rows = 4
@@ -111,7 +111,7 @@ def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm)
 
-#Toffoli (CCNOT)
+# Toffoli (CCNOT)
 def CCNOT(cm1 : cmat, cm2 : cmat, cm3 : cmat) -> cmat:
   cm = kronecker(kronecker(cm1, cm2), cm3)
   rows = 8

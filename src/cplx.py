@@ -2,11 +2,13 @@
 from __future__ import annotations
 from typing import AnyStr, Dict, Tuple
 
+# Complex number
 class cnum:
   def __init__(self, real : float, imag : float = 0):
     self.real = real
     self.imag = imag
-
+  
+  # String representation
   def to_string(self) -> AnyStr:
     if self.imag < 0:
       op = '-'
@@ -14,12 +16,15 @@ class cnum:
       op = '+'
     return str(self.real) + op + str(abs(self.imag)) + 'i'
 
+  # Print string representation
   def display(self) -> None:
     print(self.to_string())
 
+# Conjugate
 def conj(c : cnum) -> cnum:
   return cnum(c.real, -c.imag)
 
+# Complex Multiplication
 def cmult(c1 : cnum, c2 : cnum) -> cnum:
   a = c1.real
   b = c1.imag
@@ -27,6 +32,7 @@ def cmult(c1 : cnum, c2 : cnum) -> cnum:
   d = c2.imag
   return cnum(a * c - b * d, b * c + a * d)
 
+# Complex Addition
 def cadd(c1 : cnum, c2 : cnum) -> cnum:
   a = c1.real
   b = c1.imag
@@ -34,6 +40,7 @@ def cadd(c1 : cnum, c2 : cnum) -> cnum:
   d = c2.imag
   return cnum(a + c, b + d)
 
+# Complex Matrix
 class cmat:
   def __init__(self, rows : int, cols : int, entries : Dict[Tuple[int, int], cnum]):
     self.rows = rows
@@ -44,12 +51,14 @@ class cmat:
       col = key[1]
       self.array[row][col] = value
 
+  # Scalar times Complex Matrix
   def smult(self, scalar : cnum) -> cmat:
     for r in range(len(self.array)):
       for c in range(len(self.array[r])):
         self.array[r][c] = cmult(scalar, self.array[r][c])
     return self
 
+  # Print string representation
   def display(self) -> None:
     sizes = []
     for col in [*zip(*self.array)]:
@@ -63,6 +72,7 @@ class cmat:
         line += num + ' ' * tail + ','
       print(line[:-1] + ']')
 
+# Complex Matrix Multiplication
 def cmatmult(cm1 : cmat, cm2 : cmat) -> cmat:
   shared = cm1.cols
   if shared != cm2.rows:
@@ -78,6 +88,7 @@ def cmatmult(cm1 : cmat, cm2 : cmat) -> cmat:
       entries[(r, c)] = total
   return cmat(rows, cols, entries)
 
+# Kronecker Product
 def kronecker(cm1 : cmat, cm2 : cmat) -> cmat:
   row1 = cm1.rows
   col1 = cm1.cols
