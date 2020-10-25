@@ -81,18 +81,18 @@ class cmat:
     return self
 
   # Print string representation
-  def display(self) -> None:
+  def display(self, rem0 : bool = True, condensed : bool = False) -> None:
     sizes = []
     for col in [*zip(*self.array)]:
-      sizes.append(len(max(col, key=lambda c : len(c.to_string())).to_string()))
+      sizes.append(len(max(col, key=lambda c : len(c.to_string(rem0, condensed))).to_string(rem0, condensed)))
     for row in self.array:
       line = '['
       for i in range(len(row)):
-        num = row[i].to_string()
+        num = row[i].to_string(rem0, condensed)
         size = len(num) 
         tail = sizes[i] - size
-        line += num + ' ' * tail + ','
-      print(line[:-1] + ']')
+        line += num + ' ' * tail + ',' + ' ' * (not condensed)
+      print(line[:-1 - (1 * (not condensed))] + ']')
 
 # Complex Matrix Multiplication
 def cmatmult(cm1 : cmat, cm2 : cmat) -> cmat:
