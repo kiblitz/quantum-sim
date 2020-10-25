@@ -34,6 +34,16 @@ class cnum:
     i2 = c.imag
     return cnum(r1 + r2, i1 + i2)
 
+  # Scalar times Complex Matrix
+  def __rshift__(self, cm : cmat) -> cmat:
+    rows = cm.rows
+    cols = cm.cols
+    entries = {}
+    for r in range(len(cm.array)):
+      for c in range(len(cm.array[r])):
+        entries[(r, c)] = cm.array[r][c] * self
+    return cmat(rows, cols, entries)
+
   # String representation
   def to_string(self, rem0 : bool = True, condensed : bool = False) -> AnyStr:
     real = str(self.real)
@@ -115,11 +125,14 @@ class cmat:
     return cmat(rows, cols, entries)
 
   # Scalar times Complex Matrix
-  def smult(self, scalar : cnum) -> cmat:
+  def __lshift__(self, scalar : cnum) -> cmat:
+    rows = self.rows
+    cols = self.cols
+    entries = {}
     for r in range(len(self.array)):
       for c in range(len(self.array[r])):
-        self.array[r][c] *= scalar
-    return self
+        entries[(r, c)] = self.array[r][c] * scalar
+    return cmat(rows, cols, entries)
 
   # Print string representation
   def display(self, rem0 : bool = True, condensed : bool = False) -> None:
