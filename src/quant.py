@@ -51,7 +51,7 @@ def Z(cm : cmat) -> cmat:
 
 #Controlled Not X
 def CX(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm3 = kronecker(cm1, cm2)
+  cm = kronecker(cm1, cm2)
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -59,11 +59,11 @@ def CX(cm1 : cmat, cm2 : cmat) -> cmat:
              (2, 3):cnum(1),
              (3, 2):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm3)
+  return cmatmult(m, cm)
 
 #Controlled Not Y
 def CY(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm3 = kronecker(cm1, cm2)
+  cm = kronecker(cm1, cm2)
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -71,11 +71,11 @@ def CY(cm1 : cmat, cm2 : cmat) -> cmat:
              (2, 3):cnum(0, -1),
              (3, 2):cnum(0, 1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm3)
+  return cmatmult(m, cm)
 
 #Controlled Not Z
 def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm3 = kronecker(cm1, cm2)
+  cm = kronecker(cm1, cm2)
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -83,11 +83,11 @@ def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
              (2, 2):cnum(1),
              (3, 3):cnum(-1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm3)
+  return cmatmult(m, cm)
 
 #Swap
 def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
-  cm3 = kronecker(cm1, cm2)
+  cm = kronecker(cm1, cm2)
   rows = 4
   cols = 4
   entries = {(0, 0):cnum(1),
@@ -95,5 +95,21 @@ def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
              (2, 1):cnum(1),
              (3, 3):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm3)
+  return cmatmult(m, cm)
+
+#Toffoli (CCNOT)
+def CCNOT(cm1 : cmat, cm2 : cmat, cm3 : cmat) -> cmat:
+  cm = kronecker(kronecker(cm1, cm2), cm3)
+  rows = 8
+  cols = 8
+  entries = {(0, 0):cnum(1),
+             (1, 1):cnum(1),
+             (2, 2):cnum(1),
+             (3, 3):cnum(1),
+             (4, 4):cnum(1),
+             (5, 5):cnum(1),
+             (6, 7):cnum(1),
+             (7, 6):cnum(1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm)
 
