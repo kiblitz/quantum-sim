@@ -55,6 +55,10 @@ class cnum:
         real = ''
       if not self.imag:
         imag = ''
+      elif self.imag == 1:
+        imag = 'i'
+      elif self.imag == -1:
+        imag = '-i'
     op = ''
     if real and imag:
       if self.imag < 0:
