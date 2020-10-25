@@ -22,7 +22,7 @@ def H(cm : cmat) -> cmat:
              (0, 1):cnum(1),
              (1, 1):cnum(-1)}
   m = cmat(rows, cols, entries).smult(scalar)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Pauli-X
 def X(cm : cmat) -> cmat:
@@ -31,7 +31,7 @@ def X(cm : cmat) -> cmat:
   entries = {(0, 1):cnum(1),
              (1, 0):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Pauli-Y
 def Y(cm : cmat) -> cmat:
@@ -40,7 +40,7 @@ def Y(cm : cmat) -> cmat:
   entries = {(0, 1):cnum(0, -1),
              (1, 0):cnum(0, 1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Pauli-Z
 def Z(cm : cmat) -> cmat:
@@ -49,7 +49,7 @@ def Z(cm : cmat) -> cmat:
   entries = {(0, 0):cnum(1),
              (1, 1):cnum(-1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Phase (S)
 def S(cm : cmat) -> cmat:
@@ -58,7 +58,7 @@ def S(cm : cmat) -> cmat:
   entries = {(0, 0):cnum(1),
              (1, 1):cnum(0, 1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # pi/8 (T)
 def T(cm : cmat) -> cmat:
@@ -67,7 +67,7 @@ def T(cm : cmat) -> cmat:
   entries = {(0, 0):cnum(1),
              (1, 1):cexp(math.pi/4)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Controlled Not X (2 qubits)
 def CX(cm : cmat) -> cmat:
@@ -78,7 +78,7 @@ def CX(cm : cmat) -> cmat:
              (2, 3):cnum(1),
              (3, 2):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Controlled Not Y (2 qubits)
 def CY(cm : cmat) -> cmat:
@@ -89,7 +89,7 @@ def CY(cm : cmat) -> cmat:
              (2, 3):cnum(0, -1),
              (3, 2):cnum(0, 1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Controlled Not Z (2 qubits)
 def CZ(cml : cmat) -> cmat:
@@ -100,7 +100,7 @@ def CZ(cml : cmat) -> cmat:
              (2, 2):cnum(1),
              (3, 3):cnum(-1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Swap
 def SWAP(cm : cmat) -> cmat:
@@ -111,7 +111,7 @@ def SWAP(cm : cmat) -> cmat:
              (2, 1):cnum(1),
              (3, 3):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
 # Toffoli (CCNOT) (3 qubits)
 def CCNOT(cm : cmat) -> cmat:
@@ -126,5 +126,5 @@ def CCNOT(cm : cmat) -> cmat:
              (6, 7):cnum(1),
              (7, 6):cnum(1)}
   m = cmat(rows, cols, entries)
-  return cmatmult(m, cm)
+  return m @ cm
 
