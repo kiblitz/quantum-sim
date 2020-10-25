@@ -11,16 +11,30 @@ class cnum:
     self.imag = imag
   
   # String representation
-  def to_string(self) -> AnyStr:
-    if self.imag < 0:
-      op = '-'
-    else:
-      op = '+'
-    return str(self.real) + op + str(abs(self.imag)) + 'i'
+  def to_string(self, rem0 : bool = True, condensed : bool = False) -> AnyStr:
+    real = str(self.real)
+    imag = str(self.imag) + 'i'
+    if rem0:
+      if not self.real and not self.imag:
+        return '0'
+      if not self.real:
+        real = ''
+      if not self.imag:
+        imag = ''
+    op = ''
+    if real and imag:
+      if self.imag < 0:
+        op = '-'
+        imag = imag[1:]
+      else:
+        op = '+'
+      if not condensed:
+        op = ' ' + op + ' '
+    return real + op + imag
 
   # Print string representation
-  def display(self) -> None:
-    print(self.to_string())
+  def display(self, rem0 : bool = True, condensed : bool = False) -> None:
+    print(self.to_string(rem0, condensed))
 
 # Conjugate
 def conj(c : cnum) -> cnum:
