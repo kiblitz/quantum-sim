@@ -85,3 +85,15 @@ def CZ(cm1 : cmat, cm2 : cmat) -> cmat:
   m = cmat(rows, cols, entries)
   return cmatmult(m, cm3)
 
+#Swap
+def SWAP(cm1 : cmat, cm2 : cmat) -> cmat:
+  cm3 = kronecker(cm1, cm2)
+  rows = 4
+  cols = 4
+  entries = {(0, 0):cnum(1),
+             (1, 2):cnum(1),
+             (2, 1):cnum(1),
+             (3, 3):cnum(1)}
+  m = cmat(rows, cols, entries)
+  return cmatmult(m, cm3)
+
