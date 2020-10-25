@@ -2,6 +2,14 @@
 from cplx import *
 from typing import Tuple
 
+#Identity
+def I() -> cmat:
+  rows = 2
+  cols = 2
+  entries = {(0, 0):cnum(1),
+             (1, 1):cnum(1)}
+  return cmat(rows, cols, entries)
+
 #Hadamard
 def H(cm : cmat) -> cmat:
   rows = 2
