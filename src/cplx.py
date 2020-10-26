@@ -94,7 +94,27 @@ class cmat:
       row = key[0]
       col = key[1]
       self.array[row][col] = value
+
+  # Transpose
+  def transpose(self) -> cmat:
+    rows = self.cols
+    cols = self.rows
+    entries = {}
+    for r in range(self.rows):
+      for c in range(self.cols):
+        entries[(c, r)] = self.array[r][c]
+    return cmat(rows, cols, entries)
   
+  # Dagger
+  def __invert__(self) -> cmat:
+    rows = self.cols
+    cols = self.rows
+    entries = {}
+    for r in range(self.rows):
+      for c in range(self.cols):
+        entries[(c, r)] = ~self.array[r][c]
+    return cmat(rows, cols, entries)
+
   # Kronecker Product (Tensor)
   def __mul__(self, cm : cmat) -> cmat:
     row1 = self.rows
