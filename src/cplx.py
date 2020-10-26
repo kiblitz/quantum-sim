@@ -39,7 +39,7 @@ class cnum:
     return cnum(r1 + r2, i1 + i2)
 
   # Scalar times Complex Matrix
-  def __rshift__(self, cm : cmat) -> cmat:
+  def __matmul__(self, cm : cmat) -> cmat:
     rows = cm.rows
     cols = cm.cols
     entries = {}
@@ -140,16 +140,6 @@ class cmat:
     for i in range(1, exp):
       ans @= self
     return ans
-
-  # Scalar times Complex Matrix
-  def __lshift__(self, scalar : cnum) -> cmat:
-    rows = self.rows
-    cols = self.cols
-    entries = {}
-    for r in range(len(self.array)):
-      for c in range(len(self.array[r])):
-        entries[(r, c)] = self.array[r][c] * scalar
-    return cmat(rows, cols, entries)
 
   # Print string representation
   def display(self, rem0 : bool = True, condensed : bool = False) -> None:

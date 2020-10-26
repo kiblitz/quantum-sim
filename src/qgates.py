@@ -21,7 +21,7 @@ def H() -> cmat:
              (1, 0):cnum(1),
              (0, 1):cnum(1),
              (1, 1):cnum(-1)}
-  return cmat(rows, cols, entries) << scalar
+  return scalar @ cmat(rows, cols, entries)
 
 # Pauli-X
 def X() -> cmat:
